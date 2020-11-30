@@ -1,5 +1,5 @@
 package com.orsys.SPJ_TP2.controller;
-
+import com.orsys.model.User;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,12 @@ public class HelloController {
 	//read the provided form data
 	String name=req.getParameter("name");
 	String pass=req.getParameter("pass");
-	if(pass.equals("admin"))
+	User us=new User(name, pass);
+	String msg=us.verif();
+	m.addAttribute("message", msg);
+
+	return "viewpage";
+	/*if(pass.equals("admin"))
 	{
 	String msg="Hello "+ name;
 	//add a message to the model
@@ -29,5 +34,6 @@ public class HelloController {
 	m.addAttribute("message", msg);
 	return "errorpage";
 	}
+	*/
 	}
 }
